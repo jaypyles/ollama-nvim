@@ -85,7 +85,7 @@ local function test_layout()
 			Layout.Box(response, { size = "40%" }),
 			Layout.Box({
 				Layout.Box(prompt, { size = "50%" }),
-			}, { dir = "row", size = "60%" }),
+			}, { dir = "row", size = "20%" }),
 		}, { dir = "col" })
 	)
 
