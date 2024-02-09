@@ -49,11 +49,29 @@ end
 
 local Layout = require("nui.layout")
 local Popup = require("nui.popup")
+local Input = require("nui.input")
 
 local function test_layout()
-	local top_popup = Popup({ border = "double" })
-	local bottom_left_popup = Popup({ border = "single" })
-	local bottom_right_popup = Popup({ border = "single" })
+	local response = Popup({ border = "single" })
+	local prompt_options = {
+		relative = "cursor",
+		position = {
+			row = 1,
+			col = 0,
+		},
+		size = 20,
+		border = {
+			style = "rounded",
+			text = {
+				top = "[Input]",
+				top_align = "left",
+			},
+		},
+		win_options = {
+			winhighlight = "Normal:Normal",
+		},
+	}
+	local prompt = Input()
 
 	local layout = Layout(
 		{
@@ -64,10 +82,10 @@ local function test_layout()
 			},
 		},
 		Layout.Box({
-			Layout.Box(top_popup, { size = "40%" }),
+			Layout.Box(response, { size = "40%" }),
 			Layout.Box({
-				Layout.Box(bottom_right_popup, { size = "50%" }),
-			}, { dir = "row", size = "100%" }),
+				Layout.Box(prompt, { size = "50%" }),
+			}, { dir = "row", size = "60%" }),
 		}, { dir = "col" })
 	)
 
