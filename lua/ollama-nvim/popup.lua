@@ -1,6 +1,16 @@
 local Popup = require("nui.popup")
 local event = require("nui.utils.autocmd").event
 
+local function create_scratch_buffer()
+	local bufnr = vim.api.nvim_create_buf(false, true)
+
+	vim.api.nvim_buf_set_option(bufnr, "buftype", "nofile") -- Makes it a temporary buffer
+	vim.api.nvim_buf_set_option(bufnr, "bufhidden", "wipe") -- Buffer is deleted when hidden
+	vim.api.nvim_buf_set_option(bufnr, "swapfile", false) -- Disable swapfile for this buffer
+
+	return bufnr
+end
+
 local function show_my_popup()
 	local my_popup = Popup({
 		border = {
@@ -22,7 +32,7 @@ local function show_my_popup()
 		enter = true,
 		focusable = true,
 		zindex = 50, -- ensures popup is above other UI components
-		bufnr = vim.api.nvim_create_buf(false, true),
+		bufnr = create_scratch_buffer(),
 	})
 
 	-- Set content of the popup window
