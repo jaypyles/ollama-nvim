@@ -4,4 +4,4 @@ from langchain_community.llms import Ollama
 
 if __name__ == "__main__":
     llm = Ollama(model="llama2")
-    llm.invoke(sys.argv[1])
+    print(llm.invoke(sys.argv[1]))
