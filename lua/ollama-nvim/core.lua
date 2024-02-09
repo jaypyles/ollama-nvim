@@ -21,11 +21,10 @@ function M.getSelectedText()
 	return table.concat(lines, "\n")
 end
 
-function M.queryLLMWithPrompt()
+function M.queryLLMWithPrompt(text, prompt)
 	local project_root = vim.fn.stdpath("data") .. "/lazy/ollama-nvim"
-	local selected_text = M.getSelectedText()
 	local prompt_text = vim.fn.input("PROMPT\n")
-	local combined_text = prompt_text .. "\n" .. selected_text
+	local combined_text = prompt .. "\n" .. text
 
 	-- Define the path to your Python script
 	local python_script_path = project_root .. "/scripts/query_llm.py"
