@@ -35,7 +35,6 @@ local function show_my_popup()
 			winblend = 10,
 			winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
 		},
-		bufnr = vim.api.nvim_get_current_buf(),
 	})
 
 	-- Set content of the popup window
