@@ -10,11 +10,13 @@ local function show_my_popup()
 				top_align = "center",
 			},
 		},
-		type = "buf",
 		position = "50%",
 		size = {
 			width = 40,
 			height = 10,
+		},
+		buf_options = {
+			modifiable = true,
 		},
 		enter = true,
 		focusable = true,
