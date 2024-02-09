@@ -41,7 +41,6 @@ function M.queryLLMWithPrompt(text, prompt)
 	-- Define callback functions for handling the job's output and completion
 	local on_stdout = function(_, data, _)
 		local plugin = "ollama-nvim"
-		print(data)
 		vim.notify(table.concat(data, "\n"), vim.log.levels.INFO, {
 			title = plugin,
 			on_open = function(win)
