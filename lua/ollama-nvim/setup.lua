@@ -17,7 +17,7 @@ local function setup_virtual_env_internal()
 
 	-- Activate the virtual environment and install requirements
 	-- Note: This command may vary depending on your operating system and shell
-	local activate_command = "source " .. venv_path .. "/bin/activate"
+	local activate_command = "bash source " .. venv_path .. "/bin/activate"
 	local pip_install_command = activate_command .. " && pip install -r " .. requirements_path
 	local result = vim.fn.system(pip_install_command)
 
