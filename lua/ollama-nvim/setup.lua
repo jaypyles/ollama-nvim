@@ -5,6 +5,7 @@ local function setup_virtual_env_internal()
 	local project_root = vim.fn.stdpath("data") .. "/lazy/ollama-nvim"
 	local venv_path = project_root .. "/venv"
 	local requirements_path = project_root .. "/requirements.txt"
+	print(venv_path)
 
 	-- Check if the virtual environment already exists
 	if vim.fn.isdirectory(venv_path) == 0 then
