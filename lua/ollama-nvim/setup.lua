@@ -1,7 +1,7 @@
 local M = {}
 
 local function setup_virtual_env_internal()
-	local project_root = vim.fn.stdpath("config") .. "/your-plugin-directory"
+	local project_root = vim.fn.stdpath("config") .. "/ollama-nvim"
 	local venv_path = project_root .. "/venv"
 	local requirements_path = project_root .. "/requirements.txt"
 
