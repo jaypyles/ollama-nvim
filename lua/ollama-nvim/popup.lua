@@ -14,7 +14,7 @@ local function test_layout()
 		border = {
 			style = "rounded",
 			text = {
-				top = "[Input]",
+				top = "[Enter your prompt]",
 				top_align = "left",
 			},
 		},

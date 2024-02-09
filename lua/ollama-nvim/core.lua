@@ -23,7 +23,6 @@ end
 
 function M.queryLLMWithPrompt(text, prompt)
 	local project_root = vim.fn.stdpath("data") .. "/lazy/ollama-nvim"
-	local prompt_text = vim.fn.input("PROMPT\n")
 	local combined_text = prompt .. "\n" .. text
 
 	-- Define the path to your Python script
