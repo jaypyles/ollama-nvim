@@ -41,7 +41,7 @@ function M.queryLLMWithPrompt()
 	local curr_filetype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype")
 
 	-- Define callback functions for handling the job's output and completion
-	local on_stdout = function(job_id, data, event)
+	local on_stdout = function(_, data, _)
 		local plugin = "ollama-nvim"
 		vim.notify(table.concat(data, "\n"), vim.log.levels.INFO, {
 			title = plugin,
