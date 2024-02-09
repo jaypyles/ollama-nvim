@@ -40,8 +40,15 @@ function M.queryLLMWithPrompt()
 
 	-- Define callback functions for handling the job's output and completion
 	local on_stdout = function(job_id, data, event)
-		-- Process or display the output data from the script
-		vim.notify(table.concat(data, "\n"))
+		local plugin = "ollama-nvim"
+		vim.notify(table.concat(data, "\n"), vim.log.levels.INFO, {
+			title = plugin,
+			on_open = function(win)
+				local buf = vim.api.nvim_win_get_buf(win)
+				local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+				vim.api.nvim_buf_set_option(buf, "filetype", filetype)
+			end,
+		})
 	end
 
 	-- Start the job asynchronously
