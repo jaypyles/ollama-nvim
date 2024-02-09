@@ -46,6 +46,7 @@ function M.queryLLMWithPrompt()
 			on_open = function(win)
 				local buf = vim.api.nvim_win_get_buf(win)
 				local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+				print(filetype)
 				vim.api.nvim_buf_set_option(buf, "filetype", filetype)
 			end,
 		})
