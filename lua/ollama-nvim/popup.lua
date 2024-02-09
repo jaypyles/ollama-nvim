@@ -71,7 +71,7 @@ local function test_layout()
 			winhighlight = "Normal:Normal",
 		},
 	}
-	local prompt = Input()
+	local prompt = Input(prompt_options, { prompt = ">", default_value = "" })
 
 	local layout = Layout(
 		{
