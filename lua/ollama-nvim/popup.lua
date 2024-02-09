@@ -17,6 +17,7 @@ local function show_my_popup()
 		},
 		buf_options = {
 			modifiable = true,
+			readonly = false,
 		},
 		enter = true,
 		focusable = true,
