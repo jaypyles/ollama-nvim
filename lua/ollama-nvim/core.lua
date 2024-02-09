@@ -41,7 +41,7 @@ function M.queryLLMWithPrompt()
 	-- Define callback functions for handling the job's output and completion
 	local on_stdout = function(job_id, data, event)
 		-- Process or display the output data from the script
-		print(table.concat(data, "\n"))
+		vim.notify(table.concat(data, "\n"))
 	end
 
 	-- Start the job asynchronously
