@@ -33,7 +33,7 @@ local function test_layout()
 		prompt = "> ",
 		default_value = "",
 		on_submit = function(value)
-			print("Value submitted: ", value)
+			require("ollama-nvim.core").queryLLMWithPrompt(text, value)
 		end,
 	})
 
@@ -54,13 +54,6 @@ local function test_layout()
 	)
 
 	layout:mount()
-	local event = require("nui.utils.autocmd").event
-
-	response:on({ event.BufLeave }, function()
-		local prompt_text = vim.api.nvim_buf_get_lines(prompt.bufnr, 0, -1, false)
-		require("ollama-nvim.core").queryLLMWithPrompt(text, prompt_text)
-		response:unmount()
-	end, { once = true })
 end
 
 return {
