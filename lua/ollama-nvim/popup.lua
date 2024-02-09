@@ -66,7 +66,6 @@ local function test_layout()
 		Layout.Box({
 			Layout.Box(top_popup, { size = "40%" }),
 			Layout.Box({
-				Layout.Box(bottom_left_popup, { size = "50%" }),
 				Layout.Box(bottom_right_popup, { size = "50%" }),
 			}, { dir = "row", size = "60%" }),
 		}, { dir = "col" })
