@@ -31,7 +31,7 @@ function M.queryLLMWithPrompt()
 
 	-- Define the path to your Python script
 	local python_script_path = project_root .. "/scripts/query_llm.py"
-	local python_interpreter = project_root .. "../venv/bin/python"
+	local python_interpreter = project_root .. "/venv/bin/python"
 
 	-- Command to call the Python script with combined_text as an argument
 	local command = string.format("%s %s '%s'", python_interpreter, python_script_path, combined_text)
