@@ -38,6 +38,14 @@ local function show_my_popup()
 	-- Set content of the popup window
 	my_popup:mount()
 
+	vim.api.nvim_buf_set_lines(
+		vim.api.nvim_get_current_buf(),
+		0,
+		-1,
+		false,
+		{ "Line 1", "Line 2", "Editable content here..." }
+	)
+
 	-- Optional: Add keymaps for closing the popup
 	my_popup:map("n", "<Esc>", function()
 		my_popup:unmount()
