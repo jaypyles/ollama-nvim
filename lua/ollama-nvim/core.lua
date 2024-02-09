@@ -44,17 +44,11 @@ function M.queryLLMWithPrompt()
 		print(table.concat(data, "\n"))
 	end
 
-	local on_exit = function(job_id, exit_code, event)
-		-- Handle job completion, e.g., display a message or process exit code
-		print("Job completed with exit code: " .. exit_code)
-	end
-
 	-- Start the job asynchronously
 	vim.fn.jobstart(command, {
 		stdout_buffered = true,
 		stderr_buffered = true,
 		on_stdout = on_stdout,
-		on_exit = on_exit,
 		-- Use a shell to execute the command, enabling argument passing
 		shell = "/bin/sh",
 		shellcmdflag = "-c",
