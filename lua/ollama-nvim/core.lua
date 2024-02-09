@@ -27,23 +27,38 @@ function M.queryLLMWithPrompt()
 	local prompt_text = vim.fn.input("PROMPT\n")
 	local combined_text = prompt_text .. "\n" .. selected_text
 
-	print("Combined text to send to LLM:", combined_text)
-
 	-- Define the path to your Python script
 	local python_script_path = project_root .. "/scripts/query_llm.py"
 	local python_interpreter = project_root .. "/venv/bin/python"
 
+	-- Escape single quotes in combined_text
+	local escaped_combined_text = combined_text:gsub("'", "'\\''")
+
 	-- Command to call the Python script with combined_text as an argument
-	local command = string.format("%s %s '%s'", python_interpreter, python_script_path, combined_text)
+	-- Use a shell to correctly handle the inline argument
+	local command = string.format("'%s' '%s' '%s'", python_interpreter, python_script_path, escaped_combined_text)
 
-	print(command)
+	-- Define callback functions for handling the job's output and completion
+	local on_stdout = function(job_id, data, event)
+		-- Process or display the output data from the script
+		print(table.concat(data, "\n"))
+	end
 
-	-- Call the Python script
-	local result = vim.fn.system(command)
+	local on_exit = function(job_id, exit_code, event)
+		-- Handle job completion, e.g., display a message or process exit code
+		print("Job completed with exit code: " .. exit_code)
+	end
 
-	-- Optional: Handle the output of the Python script
-	print("Result from Python script:", result)
-	-- Here, instead of printing, you would call your Python script or process the combined text as needed.
+	-- Start the job asynchronously
+	vim.fn.jobstart(command, {
+		stdout_buffered = true,
+		stderr_buffered = true,
+		on_stdout = on_stdout,
+		on_exit = on_exit,
+		-- Use a shell to execute the command, enabling argument passing
+		shell = "/bin/sh",
+		shellcmdflag = "-c",
+	})
 end
 
 return M
