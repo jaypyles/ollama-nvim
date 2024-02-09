@@ -1,20 +1,18 @@
 local core = require("ollama-nvim.core") -- Correctly requiring the core module
+local setup = require("ollama-nvim.setup")
 
 local M = {}
 
 function M.setup()
-	-- Setup function for your plugin, if needed
+	setup.setup_virtual_env()
 end
 
 function M.queryLLM()
 	core.queryLLM()
 end
 
--- Create the user command "QueryLLM"
 vim.api.nvim_create_user_command("QueryLLM", M.queryLLM, { nargs = 0 })
 
--- Set up a key mapping to trigger the queryLLM function with the selected text
--- Make sure the require path matches the actual plugin structure
 vim.api.nvim_set_keymap(
 	"v",
 	"<leader>q",
