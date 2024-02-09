@@ -12,6 +12,7 @@ local function create_scratch_buffer()
 end
 
 local function show_my_popup()
+	local bufnr = create_scratch_buffer()
 	local my_popup = Popup({
 		border = {
 			style = "rounded", -- or "single", "double", "shadow", etc.
@@ -32,19 +33,13 @@ local function show_my_popup()
 		enter = true,
 		focusable = true,
 		zindex = 50, -- ensures popup is above other UI components
-		bufnr = create_scratch_buffer(),
+		bufnr = bufnr,
 	})
 
 	-- Set content of the popup window
 	my_popup:mount()
 
-	vim.api.nvim_buf_set_lines(
-		vim.api.nvim_get_current_buf(),
-		0,
-		-1,
-		false,
-		{ "Line 1", "Line 2", "Editable content here..." }
-	)
+	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Line 1", "Line 2", "Editable content here..." })
 
 	-- Optional: Add keymaps for closing the popup
 	my_popup:map("n", "<Esc>", function()
