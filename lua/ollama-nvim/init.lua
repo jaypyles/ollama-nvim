@@ -8,12 +8,14 @@ function M.queryLLM()
 	core.queryLLM()
 end
 
+-- Assuming core.queryLLM is properly defined in the core module,
+-- you should be able to create the user command like this:
 vim.api.nvim_create_user_command("QueryLLM", core.queryLLM, { nargs = 0 })
 
 vim.api.nvim_set_keymap(
 	"v",
 	"<leader>q",
-	':lua require("yourplugin.core").queryLLMWithPrompt()<CR>',
+	':lua require("ollama-nvim.core").queryLLMWithPrompt()<CR>',
 	{ noremap = true, silent = true }
 )
 
