@@ -1,17 +1,20 @@
-local core = require("ollama-nvim.core") -- Make sure this path matches your plugin's structure
+local core = require("ollama-nvim.core") -- Correctly requiring the core module
 
 local M = {}
 
-function M.setup() end
+function M.setup()
+	-- Setup function for your plugin, if needed
+end
 
 function M.queryLLM()
 	core.queryLLM()
 end
 
--- Assuming core.queryLLM is properly defined in the core module,
--- you should be able to create the user command like this:
+-- Create the user command "QueryLLM"
 vim.api.nvim_create_user_command("QueryLLM", core.queryLLM, { nargs = 0 })
 
+-- Set up a key mapping to trigger the queryLLM function with the selected text
+-- Make sure the require path matches the actual plugin structure
 vim.api.nvim_set_keymap(
 	"v",
 	"<leader>q",
