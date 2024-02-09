@@ -3,7 +3,7 @@ local Popup = require("nui.popup")
 local Input = require("nui.input")
 
 local function test_layout()
-	local response = Popup({ border = "single" })
+	local response = Popup({ border = "single", content = "WOOOOO" })
 	local prompt_options = {
 		relative = "cursor",
 		position = {
