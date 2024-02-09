@@ -41,7 +41,11 @@ local function test_layout()
 	)
 
 	local text = require("ollama-nvim.core").getSelectedText()
-	vim.api.nvim_buf_set_lines(response.bufnr, 0, -1, false, { text })
+	local lines = {}
+	for line in text:gmatch("([^\n]*)\n?") do
+		table.insert(lines, line)
+	end
+	vim.api.nvim_buf_set_lines(response.bufnr, 0, -1, false, lines)
 
 	layout:mount()
 end
