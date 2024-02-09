@@ -11,7 +11,7 @@ function M.queryLLM()
 end
 
 -- Create the user command "QueryLLM"
-vim.api.nvim_create_user_command("QueryLLM", core.queryLLM(), { nargs = 0 })
+vim.api.nvim_create_user_command("QueryLLM", M.queryLLM, { nargs = 0 })
 
 -- Set up a key mapping to trigger the queryLLM function with the selected text
 -- Make sure the require path matches the actual plugin structure
