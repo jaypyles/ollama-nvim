@@ -76,5 +76,5 @@ local function test_layout()
 end
 
 return {
-	show_my_popup = test_layout(),
+	show_my_popup = test_layout,
 }
