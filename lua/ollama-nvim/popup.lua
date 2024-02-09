@@ -39,7 +39,6 @@ local function show_my_popup()
 
 	-- Set content of the popup window
 	my_popup:mount()
-	my_popup:set_lines({ "Line 1", "Line 2", "Line 3" }) -- Example content
 
 	-- Optional: Add keymaps for closing the popup
 	my_popup:map("n", "<Esc>", function()
