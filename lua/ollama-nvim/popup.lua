@@ -22,6 +22,7 @@ local function show_my_popup()
 		enter = true,
 		focusable = true,
 		zindex = 50, -- ensures popup is above other UI components
+		bufnr = vim.api.nvim_get_current_buf(),
 	})
 
 	-- Set content of the popup window
