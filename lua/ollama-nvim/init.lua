@@ -19,7 +19,7 @@ vim.api.nvim_create_user_command("TestPopup", popup.show_my_popup, { nargs = 0 }
 vim.api.nvim_set_keymap(
 	"v",
 	"<leader>q",
-	':lua require("ollama-nvim.popup").show_my_popup()CR>',
+	':lua require("ollama-nvim.popup").show_my_popup()<CR>',
 	{ noremap = true, silent = true }
 )
 
