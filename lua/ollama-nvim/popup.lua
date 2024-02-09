@@ -22,7 +22,20 @@ local function test_layout()
 			winhighlight = "Normal:Normal",
 		},
 	}
-	local prompt = Input(prompt_options, { prompt = "> ", default_value = "" })
+	local text = require("ollama-nvim.core").getSelectedText()
+	local lines = {}
+	for line in text:gmatch("([^\n]*)\n?") do
+		table.insert(lines, line)
+	end
+	vim.api.nvim_buf_set_lines(response.bufnr, 0, -1, false, lines)
+
+	local prompt = Input(prompt_options, {
+		prompt = "> ",
+		default_value = "",
+		on_submit = function(value)
+			print("Value submitted: ", value)
+		end,
+	})
 
 	local layout = Layout(
 		{
@@ -39,13 +52,6 @@ local function test_layout()
 			}, { dir = "row", size = "20%" }),
 		}, { dir = "col" })
 	)
-
-	local text = require("ollama-nvim.core").getSelectedText()
-	local lines = {}
-	for line in text:gmatch("([^\n]*)\n?") do
-		table.insert(lines, line)
-	end
-	vim.api.nvim_buf_set_lines(response.bufnr, 0, -1, false, lines)
 
 	layout:mount()
 	local event = require("nui.utils.autocmd").event
