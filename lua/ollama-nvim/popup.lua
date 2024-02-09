@@ -3,7 +3,7 @@ local Popup = require("nui.popup")
 local Input = require("nui.input")
 
 local function test_layout()
-	local response = Popup({ border = "single", content = "WOOOOO" })
+	local response = Popup({ border = "single" })
 	local prompt_options = {
 		relative = "cursor",
 		position = {
@@ -41,6 +41,7 @@ local function test_layout()
 	)
 
 	local text = require("ollama-nvim.core").getSelectedText()
+	vim.api.nvim_buf_set_lines(response.bufnr, 0, -1, false, { text })
 
 	layout:mount()
 end
