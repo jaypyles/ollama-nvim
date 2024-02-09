@@ -37,6 +37,8 @@ function M.queryLLMWithPrompt()
 	-- Command to call the Python script with combined_text as an argument
 	-- Use a shell to correctly handle the inline argument
 	local command = string.format("'%s' '%s' '%s'", python_interpreter, python_script_path, escaped_combined_text)
+	local win = vim.api.nvim_get_current_win()
+	local curr_filetype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "filetype")
 
 	-- Define callback functions for handling the job's output and completion
 	local on_stdout = function(job_id, data, event)
@@ -45,9 +47,7 @@ function M.queryLLMWithPrompt()
 			title = plugin,
 			on_open = function(win)
 				local buf = vim.api.nvim_win_get_buf(win)
-				local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
-				print(filetype)
-				vim.api.nvim_buf_set_option(buf, "filetype", filetype)
+				vim.api.nvim_buf_set_option(buf, "filetype", curr_filetype)
 			end,
 		})
 	end
