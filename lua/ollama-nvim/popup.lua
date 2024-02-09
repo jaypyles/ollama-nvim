@@ -10,6 +10,7 @@ local function show_my_popup()
 				top_align = "center",
 			},
 		},
+		type = "buf",
 		position = "50%",
 		size = {
 			width = 40,
